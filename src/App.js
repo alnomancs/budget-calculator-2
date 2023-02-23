@@ -32,7 +32,6 @@ function App() {
 
   /* ****************     useEffect   **********************/
   useEffect(() => {
-    console.log("we call useEffect");
     localStorage.setItem("expenses", JSON.stringify(expenses));
   }, [expenses]);
 
@@ -57,8 +56,7 @@ function App() {
   };
 
   //clear all expense
-  const handleAllExpense = () => {
-    console.log(expenses);
+  const handleClearAllExpense = () => {
     setExpenses([]);
   };
 
@@ -72,7 +70,6 @@ function App() {
 
   // handle edit
   const handleEdit = (id) => {
-    console.log(id);
     const tempExpense = expenses.find((expense) => expense.id === id);
     const { charge, amount } = tempExpense;
     setId(id);
@@ -90,7 +87,6 @@ function App() {
         const tempExpenses = expenses.map((item) => {
           return item.id === id ? { ...item, charge, amount } : item;
         });
-
         setExpenses(tempExpenses);
         setEdit(false);
         setId(0);
@@ -130,7 +126,7 @@ function App() {
         />
         <ExpensesList
           expenses={expenses}
-          handleAllExpense={handleAllExpense}
+          handleClearAllExpense={handleClearAllExpense}
           handleEdit={handleEdit}
           handleDelete={handleDelete}
         />
